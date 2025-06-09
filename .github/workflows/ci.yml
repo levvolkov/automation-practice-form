@@ -1,0 +1,65 @@
+name: Java CI with Allure Report
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run tests with Gradle
+        run: ./gradlew clean test
+        continue-on-error: true
+
+      - name: List Allure results
+        run: ls -l allure-results || echo "No results found"
+
+      - name: Install Allure CLI
+        run: |
+          wget https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.zip
+          unzip allure-2.27.0.zip
+          sudo mv allure-2.27.0 /opt/allure
+          sudo ln -sf /opt/allure/bin/allure /usr/bin/allure
+
+      - name: Generate Allure Report
+        run: |
+          allure generate allure-results --clean -o allure-report
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: allure-report
+          path: allure-report
+          retention-days: 5
+
+      - name: Show Allure result files content
+        run: |
+          for f in allure-results/*-result.json; do
+            echo "===== $f ====="
+            cat "$f"
+            echo
+          done
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-report

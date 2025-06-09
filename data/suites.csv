@@ -1,4 +1,4 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Mon Jun 09 20:08:40 UTC 2025","Mon Jun 09 20:08:44 UTC 2025","3516","","tests.FormTest","","tests.FormTest","shouldCloseTheModalWindow","Система должна закрывать модальное окно",""
-"passed","Mon Jun 09 20:08:34 UTC 2025","Mon Jun 09 20:08:40 UTC 2025","6129","","tests.FormTest","","tests.FormTest","submitFormWithAllFieldsAndVerifyModal","Отправить форму со всеми полями и проверить данные в модальном окне",""
-"passed","Mon Jun 09 20:08:44 UTC 2025","Mon Jun 09 20:08:46 UTC 2025","2421","","tests.FormTest","","tests.FormTest","submitFormWithRequiredFieldsAndVerifyModal","Отправить форму с обязательными полями и проверить данные в модальном окне",""
+"passed","Mon Jun 09 22:50:46 UTC 2025","Mon Jun 09 22:50:50 UTC 2025","3664","","tests.FormTest","","tests.FormTest","shouldCloseTheModalWindow","Система должна закрывать модальное окно",""
+"broken","Mon Jun 09 22:50:50 UTC 2025","Mon Jun 09 22:50:53 UTC 2025","2851","","tests.FormTest","","tests.FormTest","submitFormWithRequiredFieldsAndVerifyModal","Отправить форму с обязательными полями и проверить данные в модальном окне",""
+"passed","Mon Jun 09 22:50:41 UTC 2025","Mon Jun 09 22:50:46 UTC 2025","5534","","tests.FormTest","","tests.FormTest","submitFormWithAllFieldsAndVerifyModal","Отправить форму со всеми полями и проверить данные в модальном окне",""
